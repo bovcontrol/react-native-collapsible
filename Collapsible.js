@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Animated, Easing } from 'react-native';
+import { Animated, Easing, View } from 'react-native';
 import { ViewPropTypes } from './config';
 
 const ANIMATED_EASING_PREFIXES = ['easeInOut', 'easeOut', 'easeIn'];
@@ -210,18 +210,9 @@ export default class Collapsible extends Component {
       ];
     }
     return (
-      <Animated.View
-        style={style}
-        pointerEvents={!enablePointerEvents && collapsed ? 'none' : 'auto'}
-      >
-        <Animated.View
-          ref={this._handleRef}
-          style={[this.props.style, contentStyle]}
-          onLayout={this.state.animating ? undefined : this._handleLayoutChange}
-        >
-          {this.props.children}
-        </Animated.View>
-      </Animated.View>
+      <View>
+        {!collapsed && this.props.children}
+      </View>
     );
   }
 }
